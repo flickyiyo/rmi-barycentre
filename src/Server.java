@@ -1,3 +1,5 @@
+import java.net.InetAddress;
+import java.rmi.Naming;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
@@ -11,4 +13,13 @@ public class Server extends UnicastRemoteObject implements BarycentreRMI {
         return new Calc(massPoints).calculate();
     }
 
+    public static void main(String[] args) {
+        try {
+            BarycentreRMI barycentreRMI = new Server();
+            String ip = InetAddress.getLocalHost().getHostAddress();
+            Naming.rebind("//" + ip + ":" + 1223 + "/barycentre", barycentreRMI);
+        } catch (Exception ex) {
+
+        }
+    }
 }
