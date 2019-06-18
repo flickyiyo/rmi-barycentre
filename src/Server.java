@@ -10,6 +10,7 @@ public class Server extends UnicastRemoteObject implements BarycentreRMI {
 
     @Override
     public MassPoint calculateBarycentre(ArrayList<MassPoint> massPoints) throws RemoteException {
+        System.out.println("Calculating");
         return new Calc(massPoints).calculate();
     }
 
@@ -17,6 +18,7 @@ public class Server extends UnicastRemoteObject implements BarycentreRMI {
         try {
             BarycentreRMI barycentreRMI = new Server();
             String ip = InetAddress.getLocalHost().getHostAddress();
+            System.out.println(ip);
             Naming.rebind("//" + ip + ":" + 1223 + "/barycentre", barycentreRMI);
         } catch (Exception ex) {
 
