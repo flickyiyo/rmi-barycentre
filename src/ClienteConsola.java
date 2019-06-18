@@ -1,3 +1,4 @@
+import java.net.InetAddress;
 import java.rmi.Naming;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,11 +21,15 @@ public class ClienteConsola {
 
     public static void main(String[] args) {
         List<MassPoint> massPoints = generateList(100_000);
-        try {
-            BarycentreRMI barycentreRMI = (Server) Naming.lookup("//" + "157.230.151.160:1223" + "/barycentre");
-            barycentreRMI.calculateBarycentre((ArrayList<MassPoint>) massPoints);
-        } catch (Exception ex) {
 
+        try {
+            String ip = InetAddress.getLocalHost().getHostAddress();
+            System.out.println(ip);
+            BarycentreRMI barycentreRMI = (Server) Naming.lookup("//" + "157.230.151.160:1223" + "/barycentre");
+            MassPoint massPoint = barycentreRMI.calculateBarycentre((ArrayList<MassPoint>) massPoints);
+            System.out.println(massPoint);
+        } catch (Exception ex) {
+            ex.printStackTrace();
         }
     }
 }
