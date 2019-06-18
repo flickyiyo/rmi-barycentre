@@ -1,7 +1,3 @@
-package proyecto.secuencial;
-
-import proyecto.MassPoint;
-
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -89,7 +85,7 @@ public class Calc {
         return fromWeightedSubspace(avgMassPoint(sumA, sumB));
     }
 
-    public void calculate() {
+    public MassPoint calculate() {
         while (puntos.size() > 1) {
             ArrayList<MassPoint> newPuntos = new ArrayList<>();
             // System.out.println("asdasD:" + puntos.size());
@@ -112,6 +108,8 @@ public class Calc {
                 + " : " +puntos.get(0).getZ()
                 + " : " + puntos.get(0).getMasa()
         );
+
+        return puntos.get(0);
     }
 
     public void multithreadCalculate() {

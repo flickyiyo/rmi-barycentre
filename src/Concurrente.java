@@ -1,7 +1,3 @@
-package proyecto.secuencial;
-
-import proyecto.MassPoint;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ForkJoinPool;
@@ -58,7 +54,7 @@ public class Concurrente extends ForkJoinPool {
             // System.out.println("asdasD:" + puntos.size());
             for (int i = 0; i < puntos.size()-1; i+=2) {
                 newPuntos = new ArrayList<>(newPuntos);
-                MassPoint pto =Calc.avgPointsWeighted(puntos.get(i), puntos.get(i+1));
+                MassPoint pto = Calc.avgPointsWeighted(puntos.get(i), puntos.get(i+1));
                 newPuntos.add(pto );
                 //newPuntos.add(avgPointsWeighted(puntos.get(i), puntos.get(i+1)));
             }
@@ -108,7 +104,7 @@ public class Concurrente extends ForkJoinPool {
                 // System.out.println("asdasD:" + puntos.size());
                 for (int i = 0; i < massPoints.size()-1; i+=2) {
                     newPuntos = new ArrayList<>(newPuntos);
-                    MassPoint pto =Calc.avgPointsWeighted(massPoints.get(i), massPoints.get(i+1));
+                    MassPoint pto = Calc.avgPointsWeighted(massPoints.get(i), massPoints.get(i+1));
                     newPuntos.add(pto );
                     //newPuntos.add(avgPointsWeighted(puntos.get(i), puntos.get(i+1)));
                 }

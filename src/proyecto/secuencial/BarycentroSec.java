@@ -1,10 +1,7 @@
 package proyecto.secuencial;
 
-import proyecto.MassPoint;
-
 import javax.swing.*;
 import java.util.ArrayList;
-import java.util.EventListener;
 import java.util.List;
 import java.util.Random;
 
@@ -19,10 +16,12 @@ public class BarycentroSec  extends JFrame{
     JLabel lblTxtNumeroMaxCuerpos;
     JTextField txtNumeroMaxHilos;
     JTextField txtNumeroMaxCuerpos;
+    JTextField txtNumeroCuerpos;
     JButton start;
     JLabel tiempoLineal;
     JLabel tiempoConcurrente;
     JLabel diferencia;
+    int numeroCuerpos = 10000;
 
     public BarycentroSec() {
         this.setBounds(100, 100, 500, 500);
@@ -57,6 +56,14 @@ public class BarycentroSec  extends JFrame{
         start.addActionListener(e -> calcular());
         txtNumeroMaxHilos.addActionListener(e -> cambiarNumeroHilos());
         txtNumeroMaxCuerpos.addActionListener(e -> cambiarNumeroCuerpos());
+        txtNumeroCuerpos = new JTextField("10000");
+        txtNumeroCuerpos.setBounds(10, 5, 200, 30);
+        add(txtNumeroCuerpos);
+        txtNumeroCuerpos.addActionListener(e -> {
+            try {
+                this.numeroCuerpos = Integer.parseInt(txtNumeroCuerpos.getText());
+            }catch (Exception ex) {}
+        });
         this.setVisible(true);
 
         /*/ Lineal
@@ -115,7 +122,8 @@ public class BarycentroSec  extends JFrame{
     }
 
     public void calcular() {
-        Calc calc = new Calc(generateArrayList(1_00_0));
+        System.out.println(numeroCuerpos);
+        Calc calc = new Calc(generateArrayList(numeroCuerpos));
         long a = System.nanoTime();
         calc.calculate();
         long end = System.nanoTime();
@@ -123,7 +131,7 @@ public class BarycentroSec  extends JFrame{
         this.tiempoLineal.setText("Tiempo lineal: " + String.valueOf((end - a)));
         //*/
 
-        Concurrente tmp = new Concurrente(numeroMaxCuerposPorHilo, numeroMaxHilos, generateList(1_00_0));
+        Concurrente tmp = new Concurrente(numeroMaxCuerposPorHilo, numeroMaxHilos, generateList(numeroCuerpos));
         this.tiempoConcurrente.setText("Tiempo concurrente: " + tmp.tiempoTotal);
         long diferencia = tmp.tiempoTotal - tiempoL;
         this.diferencia.setText("Diferencia: " + diferencia);

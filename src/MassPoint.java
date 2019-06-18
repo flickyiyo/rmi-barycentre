@@ -1,4 +1,4 @@
-package proyecto;
+
 
 public class MassPoint {
     private float x, y, z, masa;
