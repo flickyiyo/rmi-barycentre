@@ -17,7 +17,7 @@ public class Server extends UnicastRemoteObject implements BarycentreRMI {
     public static void main(String[] args) {
         try {
             BarycentreRMI barycentreRMI = new Server();
-            String ip = String.valueOf(InetAddress.getLocalHost().getAddress());
+            String ip = InetAddress.getLocalHost().getHostAddress();
             System.out.println(ip);
             Naming.rebind("//" + ip + ":" + 1223 + "/barycentre", barycentreRMI);
         } catch (Exception ex) {
