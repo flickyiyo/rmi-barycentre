@@ -25,7 +25,7 @@ public class ClienteConsola {
         try {
             String ip = InetAddress.getLocalHost().getHostAddress();
             System.out.println(ip);
-            BarycentreRMI barycentreRMI = (Server) Naming.lookup("//" + "157.230.151.160:1223" + "/barycentre");
+            BarycentreRMI barycentreRMI = (Server) Naming.lookup("//" + "157.230.151.160:" +1223+ "/b");
             MassPoint massPoint = barycentreRMI.calculateBarycentre((ArrayList<MassPoint>) massPoints);
             System.out.println(massPoint);
         } catch (Exception ex) {
