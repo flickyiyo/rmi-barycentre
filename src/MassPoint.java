@@ -1,6 +1,6 @@
+import java.io.Serializable;
 
-
-public class MassPoint {
+public class MassPoint implements Serializable {
     private float x, y, z, masa;
 
     public MassPoint(float x, float y, float z, float masa) {
