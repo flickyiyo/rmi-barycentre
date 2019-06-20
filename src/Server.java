@@ -14,6 +14,11 @@ public class Server extends UnicastRemoteObject implements BarycentreRMI {
         return new Calc(massPoints).calculate();
     }
 
+    @Override
+    public long getTime() throws RemoteException {
+        return 0;
+    }
+
     public static void main(String[] args) {
         try {
             BarycentreRMI barycentreRMI = new Server();
